@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khao Gaeng Thai - Authentic Thai Street Food | Leeds Kirkgate Market</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #C41E3A;
+            --primary-dark: #9A1830;
+            --gold: #D4A843;
+            --gold-light: #F0D78C;
+            --dark: #1A1A1A;
+            --darker: #0D0D0D;
+            --light: #F8F6F2;
+            --cream: #FDFBF7;
+            --text: #2D2D2D;
+            --text-light: #6B6B6B;
+            --border: #E8E4DC;
+            --shadow: 0 4px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        nav.scrolled {
+            height: 65px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 44px; height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        .nav-logo-text span { color: var(--primary); }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-phone {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .nav-phone:hover { color: var(--primary); }
+        .nav-phone i { color: var(--primary); }
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .mobile-toggle span {
+            width: 24px; height: 2px;
+            background: var(--dark);
+            transition: var(--transition);
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--darker);
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1559314809-0d155014e29e?w=1920&q=80') center/cover;
+            opacity: 0.35;
+            filter: brightness(0.4);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(196,30,58,0.15) 0%, rgba(26,26,26,0.8) 50%, rgba(13,13,13,0.95) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .hero-left { animation: fadeInUp 1s ease-out; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(212,168,67,0.15);
+            border: 1px solid rgba(212,168,67,0.3);
+            padding: 10px 24px;
+            border-radius: 50px;
+            margin-bottom: 32px;
+        }
+        .hero-badge i { color: var(--gold); font-size: 14px; }
+        .hero-badge span {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+        .hero h1 .highlight {
+            color: var(--gold);
+            position: relative;
+            display: inline-block;
+        }
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px; left: 0; right: 0;
+            height: 8px;
+            background: rgba(196,30,58,0.4);
+            z-index: -1;
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 36px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 30px rgba(196,30,58,0.3);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(196,30,58,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+            border-color: white;
+        }
+        .hero-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        .hero-img {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1;
+        }
+        .hero-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .hero-img:hover img { transform: scale(1.05); }
+        .hero-img:nth-child(2) { margin-top: 40px; }
+        .hero-img:nth-child(3) { margin-top: -40px; }
+        .hero-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+        }
+        .hero-img-label {
+            position: absolute;
+            bottom: 16px; left: 16px;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .info-bar {
+            background: var(--primary);
+            padding: 20px 5%;
+        }
+        .info-bar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+        .info-item i {
+            font-size: 18px;
+            color: var(--gold-light);
+        }
+        .info-item span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 30px; height: 1px;
+            background: var(--primary);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .signature-section {
+            background: var(--light);
+            padding: 100px 5%;
+        }
+        .signature-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .dish-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        .dish-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .dish-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            position: relative;
+        }
+        .dish-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .dish-card:hover .dish-img img { transform: scale(1.08); }
+        .dish-badge {
+            position: absolute;
+            top: 16px; left: 16px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .dish-badge.veg { background: #2D8B4E; }
+        .dish-content { padding: 24px; }
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .dish-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .dish-thai {
+            font-family: 'Noto Sans Thai', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        .dish-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .dish-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .dish-spice {
+            display: flex;
+            gap: 3px;
+            margin-top: 12px;
+        }
+        .dish-spice i { font-size: 12px; color: var(--primary); }
+        .dish-spice i.empty { color: #ddd; }
+        .full-menu-btn-wrapper {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .menu-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            overflow-y: auto;
+        }
+        .menu-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .menu-modal-inner {
+            background: var(--cream);
+            border-radius: 20px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        .menu-modal-header {
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            padding: 30px 40px;
+            border-bottom: 2px solid var(--border);
+            z-index: 10;
+            border-radius: 20px 20px 0 0;
+        }
+        .menu-modal-close {
+            position: absolute;
+            top: 24px; right: 24px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        .menu-modal-close:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .menu-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .menu-modal-subtitle {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+        .menu-tabs {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .menu-tab {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .menu-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .menu-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .menu-body { padding: 30px 40px 40px; }
+        .menu-section { display: none; }
+        .menu-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .menu-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .menu-category-title i { color: var(--primary); font-size: 20px; }
+        .menu-category-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 24px;
+            padding-left: 32px;
+        }
+        .menu-items { display: grid; gap: 16px; }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 18px 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .menu-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(196,30,58,0.08);
+            transform: translateX(4px);
+        }
+        .menu-item-info { flex: 1; }
+        .menu-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .menu-item-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(196,30,58,0.08);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .menu-item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .menu-item-thai {
+            font-family: 'Noto Sans Thai', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-left: 4px;
+        }
+        .menu-item-desc {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-left: 38px;
+        }
+        .menu-item-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+        .menu-item-extras {
+            font-size: 12px;
+            color: var(--gold);
+            margin-top: 4px;
+            margin-left: 38px;
+            font-weight: 500;
+        }
+        .menu-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 30px 0;
+        }
+        .about-section {
+            background: var(--dark);
+            padding: 100px 5%;
+        }
+        .about-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .about-img img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .about-content .section-label { color: var(--gold); }
+        .about-content .section-label::before,
+        .about-content .section-label::after { background: var(--gold); }
+        .about-content .section-title { color: white; }
+        .about-content .section-subtitle { color: rgba(255,255,255,0.6); }
+        .about-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-top: 24px;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .about-stat { text-align: center; }
+        .about-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .about-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .reviews-section {
+            background: var(--light);
+            padding: 100px 5%;
+        }
+        .reviews-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .review-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .review-stars {
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .review-text {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .review-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .review-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 14px;
+        }
+        .review-meta {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .location-section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: stretch;
+        }
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .location-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        .location-card:hover { box-shadow: var(--shadow-lg); }
+        .location-card-icon {
+            width: 50px; height: 50px;
+            background: rgba(196,30,58,0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .location-card-icon i { color: var(--primary); font-size: 20px; }
+        .location-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .location-card-text {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .location-card-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .location-card-text a:hover { text-decoration: underline; }
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .hours-day { color: var(--text); font-weight: 500; }
+        .hours-time { color: var(--primary); font-weight: 600; }
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 100%;
+            min-height: 400px;
+        }
+        .map-container iframe {
+            width: 100%; height: 100%;
+            min-height: 400px;
+            border: none;
+            filter: grayscale(0.2);
+        }
+        .drinks-section {
+            background: var(--dark);
+            padding: 100px 5%;
+        }
+        .drinks-inner { max-width: 1400px; margin: 0 auto; }
+        .drinks-inner .section-label { color: var(--gold); }
+        .drinks-inner .section-label::before,
+        .drinks-inner .section-label::after { background: var(--gold); }
+        .drinks-inner .section-title { color: white; }
+        .drinks-inner .section-subtitle { color: rgba(255,255,255,0.6); }
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .drink-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            transition: var(--transition);
+        }
+        .drink-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+        .drink-category {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .drink-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .drink-item:last-child { border-bottom: none; }
+        .drink-name { color: rgba(255,255,255,0.9); font-size: 15px; }
+        .drink-price { color: var(--gold); font-weight: 700; font-size: 15px; }
+        .drink-sizes {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 16px;
+            text-align: center;
+        }
+        footer {
+            background: var(--darker);
+            padding: 60px 5% 30px;
+        }
+        .footer-inner { max-width: 1400px; margin: 0 auto; }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand { max-width: 300px; }
+        .footer-brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+        }
+        .footer-brand-name span { color: var(--primary); }
+        .footer-brand-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .footer-social a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-bottom {
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-copyright {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+        .footer-credit {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 50px; }
+            .hero-subtitle { margin: 0 auto 40px; }
+            .hero-buttons { justify-content: center; }
+            .hero-right { max-width: 500px; margin: 0 auto; }
+            .about-inner { grid-template-columns: 1fr; gap: 50px; }
+            .location-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .hero h1 { font-size: 40px; }
+            .section { padding: 60px 5%; }
+            .menu-modal-header { padding: 20px 24px; }
+            .menu-body { padding: 20px 24px 30px; }
+            .menu-item { flex-direction: column; gap: 8px; }
+            .menu-item-price { margin-left: 38px; }
+            .footer-top { grid-template-columns: 1fr; gap: 40px; }
+            .about-stats { grid-template-columns: 1fr; gap: 20px; }
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--cream);
+            z-index: 1500;
+            padding: 100px 40px;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .mobile-menu-close {
+            position: absolute;
+            top: 24px; right: 24px;
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">K</div>
+        <div class="nav-logo-text">Khao Gaeng <span>Thai</span></div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#signature">Signature</a></li>
+        <li><a href="#menu" onclick="openMenuModal(); return false;">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Location</a></li>
+    </ul>
+    <div class="nav-cta">
+        <a href="tel:01133451750" class="nav-phone">
+            <i class="fas fa-phone"></i>
+            <span>0113 345 1750</span>
+        </a>
+    </div>
+    <div class="mobile-toggle" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
+    <a href="#home" onclick="toggleMobileMenu()">Home</a>
+    <a href="#signature" onclick="toggleMobileMenu()">Signature Dishes</a>
+    <a href="#menu" onclick="openMenuModal(); toggleMobileMenu(); return false;">Full Menu</a>
+    <a href="#about" onclick="toggleMobileMenu()">About</a>
+    <a href="#reviews" onclick="toggleMobileMenu()">Reviews</a>
+    <a href="#location" onclick="toggleMobileMenu()">Location</a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-left">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                <span>Authentic Thai Street Food</span>
+            </div>
+            <h1>Taste of <span class="highlight">Bangkok</span><br>in Leeds</h1>
+            <p class="hero-subtitle">
+                Experience the vibrant flavours of Thailand at Leeds Kirkgate Market. 
+                Fresh ingredients, bold spices, and recipes straight from the streets of Bangkok.
+            </p>
+            <div class="hero-buttons">
+                <a href="#signature" class="btn btn-primary">
+                    <i class="fas fa-utensils"></i>
+                    Explore Our Dishes
+                </a>
+                <a href="https://maps.app.goo.gl/h7EbAB5hgk4Nhbfj7" target="_blank" class="btn btn-outline">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Find Us
+                </a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&q=80" alt="Pad Thai">
+                <div class="hero-img-overlay"></div>
+                <span class="hero-img-label">Pad Thai</span>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Thai Curry">
+                <div class="hero-img-overlay"></div>
+                <span class="hero-img-label">Thai Curry</span>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1626804475297-411d863b5285?w=600&q=80" alt="Mango Sticky Rice">
+                <div class="hero-img-overlay"></div>
+                <span class="hero-img-label">Mango Sticky Rice</span>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=600&q=80" alt="Thai Street Food">
+                <div class="hero-img-overlay"></div>
+                <span class="hero-img-label">Street Food</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Info Bar -->
+<div class="info-bar">
+    <div class="info-bar-inner">
+        <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Unit 1, 1904, Leeds Kirkgate Market, LS2 7HY</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <span>Mon - Sat: 10:00 AM - 5:15 PM</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span>0113 345 1750</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-pound-sign"></i>
+            <span>£1 - £10 per person</span>
+        </div>
+    </div>
+</div>
+
+<!-- Signature Dishes Section -->
+<section class="signature-section" id="signature">
+    <div class="section-header animate-on-scroll">
+        <div class="section-label">
+            <i class="fas fa-fire"></i>
+            Chef's Selection
+        </div>
+        <h2 class="section-title">Signature Dishes</h2>
+        <p class="section-subtitle">Our most loved creations, crafted with authentic Thai recipes and the freshest ingredients from Leeds Kirkgate Market.</p>
+    </div>
+    <div class="signature-grid">
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&q=80" alt="Pad Thai Boran">
+                <span class="dish-badge">Popular</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Pad Thai Boran</div>
+                        <div class="dish-thai">ผัดไทยโบราณ</div>
+                    </div>
+                    <div class="dish-price">£8.95</div>
+                </div>
+                <p class="dish-desc">Stir-fried rice noodles with egg, vegetables & peanuts in ancient Thai sauce. A timeless classic from the streets of Bangkok.</p>
+                <div class="dish-spice">
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot empty"></i>
+                    <i class="fas fa-pepper-hot empty"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Gaeng Massaman">
+                <span class="dish-badge">Popular</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Gaeng Massaman</div>
+                        <div class="dish-thai">แกงมัสมั่น</div>
+                    </div>
+                    <div class="dish-price">£8.95</div>
+                </div>
+                <p class="dish-desc">Rich, aromatic Massaman curry with vegetables, peanuts & your choice of chicken, pork or tofu. Served with boiled rice.</p>
+                <div class="dish-spice">
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot empty"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1603088549196-5924a476b067?w=600&q=80" alt="Gra Prao">
+                <span class="dish-badge">Very Popular</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Gra Prao</div>
+                        <div class="dish-thai">กระเพรา</div>
+                    </div>
+                    <div class="dish-price">£8.95</div>
+                </div>
+                <p class="dish-desc">Classic Thai stir-fry with holy basil, chilli, garlic & vegetables. The most beloved street food dish in Thailand.</p>
+                <div class="dish-spice">
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1626804475297-411d863b5285?w=600&q=80" alt="Mango Sticky Rice">
+                <span class="dish-badge">Dessert</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Mango Sticky Rice</div>
+                        <div class="dish-thai">ข้าวเหนียวมะม่วง</div>
+                    </div>
+                    <div class="dish-price">£6.95</div>
+                </div>
+                <p class="dish-desc">Sweet glutinous rice with fresh ripe mango and rich coconut cream. The perfect end to your Thai feast.</p>
+            </div>
+        </div>
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=600&q=80" alt="Khao Gai Tod">
+                <span class="dish-badge">Popular</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Khao Gai Tod</div>
+                        <div class="dish-thai">ข้าวไก่ทอด</div>
+                    </div>
+                    <div class="dish-price">£9.95</div>
+                </div>
+                <p class="dish-desc">Crispy golden fried chicken served with rice, cucumber and our signature sweet chilli sauce. A crowd favourite.</p>
+                <div class="dish-spice">
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot empty"></i>
+                    <i class="fas fa-pepper-hot empty"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dish-card animate-on-scroll">
+            <div class="dish-img">
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Som Tam">
+                <span class="dish-badge">Fresh</span>
+            </div>
+            <div class="dish-content">
+                <div class="dish-header">
+                    <div>
+                        <div class="dish-name">Som Tam</div>
+                        <div class="dish-thai">ส้มตำ</div>
+                    </div>
+                    <div class="dish-price">£9.95</div>
+                </div>
+                <p class="dish-desc">Delicious fresh papaya salad with peanuts, garlic & chilli. Refreshing, zesty and authentically Thai.</p>
+                <div class="dish-spice">
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot"></i>
+                    <i class="fas fa-pepper-hot"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="full-menu-btn-wrapper animate-on-scroll">
+        <button class="btn btn-primary" onclick="openMenuModal()">
+            <i class="fas fa-book-open"></i>
+            View Full Menu
+        </button>
+    </div>
+</section>
+
+<!-- Full Menu Modal -->
+<div class="menu-modal" id="menuModal">
+    <div class="menu-modal-inner">
+        <div class="menu-modal-header">
+            <button class="menu-modal-close" onclick="closeMenuModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="menu-modal-title">Our Menu</div>
+            <div class="menu-modal-subtitle">Authentic Thai Street Food — All dishes made fresh to order</div>
+            <div class="menu-tabs">
+                <button class="menu-tab active" onclick="switchTab('curry')">Thai Curry Box</button>
+                <button class="menu-tab" onclick="switchTab('noodle')">Thai Noodle Box</button>
+                <button class="menu-tab" onclick="switchTab('chicken')">Chicken Rice Box</button>
+                <button class="menu-tab" onclick="switchTab('soup')">Noodle Soup</button>
+                <button class="menu-tab" onclick="switchTab('tamsung')">Tam Sung</button>
+                <button class="menu-tab" onclick="switchTab('starters')">Starters</button>
+                <button class="menu-tab" onclick="switchTab('yum')">Yum Yum Box</button>
+                <button class="menu-tab" onclick="switchTab('sides')">Sides & Soup</button>
+                <button class="menu-tab" onclick="switchTab('drinks')">Drinks</button>
+            </div>
+        </div>
+        <div class="menu-body">
+            <!-- Thai Curry Box -->
+            <div class="menu-section active" id="tab-curry">
+                <div class="menu-category-title"><i class="fas fa-bowl-rice"></i> Thai Curry Box ข้าวแกง</div>
+                <p class="menu-category-desc">Made fresh to order. All dishes served with boiled rice. Choice of Chicken, Pork or Tofu.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">1</span>
+                                <span class="menu-item-name">Gaeng Keaw Wan <span class="menu-item-thai">แกงเขียวหวาน</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai green curry with vegetables & bamboo shoots</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">2</span>
+                                <span class="menu-item-name">Gaeng Dang <span class="menu-item-thai">แกงเผ็ด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai red curry with vegetables & bamboo shoots</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">3</span>
+                                <span class="menu-item-name">Gaeng Massaman <span class="menu-item-thai">แกงมัสมั่น</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai massaman curry with vegetables & peanuts</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">4</span>
+                                <span class="menu-item-name">Gaeng Panang <span class="menu-item-thai">แกงพะแนง</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai panang aromatic curry with green beans</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thai Noodle Box -->
+            <div class="menu-section" id="tab-noodle">
+                <div class="menu-category-title"><i class="fas fa-bowl-food"></i> Thai Noodle Box เส้นใหญ่</div>
+                <p class="menu-category-desc">Noodle dishes for noodle lovers. Choice of Chicken, Pork or Tofu.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">7</span>
+                                <span class="menu-item-name">Pad Thai Boran <span class="menu-item-thai">ผัดไทยโบราณ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fried rice-noodles with egg, vegetables & peanuts in ancient Thai sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">8</span>
+                                <span class="menu-item-name">Pad Kee Mow <span class="menu-item-thai">ผัดขี้เมา</span></span>
+                            </div>
+                            <p class="menu-item-desc">Spicy stir fried rice-noodles drunken style with basil & vegetables</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">9</span>
+                                <span class="menu-item-name">Pad Si Aew <span class="menu-item-thai">ผัดซีอิ๊ว</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fried rice-noodles with egg & vegetables in dark soy sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">10</span>
+                                <span class="menu-item-name">Pad Chow Mein <span class="menu-item-thai">ผัดเส้นหมี่</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fried yellow noodles & vegetables in special sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chicken Rice Box -->
+            <div class="menu-section" id="tab-chicken">
+                <div class="menu-category-title"><i class="fas fa-drumstick-bite"></i> Chicken Rice Box ข้าวกล่อง</div>
+                <p class="menu-category-desc">Strictly chicken dishes, for chicken lovers.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">5</span>
+                                <span class="menu-item-name">Khao Gai Tod <span class="menu-item-thai">ข้าวไก่ทอด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Crispy chicken, served with rice, cucumber and sweet sauce</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">6</span>
+                                <span class="menu-item-name">Khao Mun Gai <span class="menu-item-thai">ข้าวมันไก่</span></span>
+                            </div>
+                            <p class="menu-item-desc">Steam chicken, served with garlic & ginger rice, cucumber and soybean sauce</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">6A</span>
+                                <span class="menu-item-name">Khao Yum Gai Zapp <span class="menu-item-thai">ข้าวยำไก่ซ่าส์</span></span>
+                            </div>
+                            <p class="menu-item-desc">Signature zapp rice dish, loaded with crispy chicken, special spicy sauce and shallot</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Noodle Soup -->
+            <div class="menu-section" id="tab-soup">
+                <div class="menu-category-title"><i class="fas fa-bowl-rice"></i> Thai Style Noodle Soup ก๋วยเตี๋ยว</div>
+                <p class="menu-category-desc">Traditional Thai style noodle soup. Choice of Chicken, Pork or Tofu.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">11</span>
+                                <span class="menu-item-name">Guay Tiew Tom Yam <span class="menu-item-thai">ก๋วยเตี๋ยวต้มยำ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Rice-noodle, bean sprout in spicy & sour soup. Served with fish balls, crispy wonton and peanut</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£10.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">12</span>
+                                <span class="menu-item-name">Guay Tiew <span class="menu-item-thai">ก๋วยเตี๋ยว</span></span>
+                            </div>
+                            <p class="menu-item-desc">Rice-noodle, bean sprout in traditional soup. Served with fish balls, crispy wonton and garlic</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">12A</span>
+                                <span class="menu-item-name">Guay Tiew Yen Ta Fo <span class="menu-item-thai">ก๋วยเตี๋ยวเย็นตาโฟ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai pink noodle soup, served with fish ball and crispy wonton</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£10.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tam Sung -->
+            <div class="menu-section" id="tab-tamsung">
+                <div class="menu-category-title"><i class="fas fa-fire-burner"></i> Tam Sung อาหารตามสั่ง</div>
+                <p class="menu-category-desc">Stir fried main dish, served with boiled rice — made fresh to order. Choice of Chicken, Pork or Tofu.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">13</span>
+                                <span class="menu-item-name">Khao Pad <span class="menu-item-thai">ข้าวผัด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fried rice with egg & vegetables</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">14</span>
+                                <span class="menu-item-name">Gra Prao <span class="menu-item-thai">กระเพรา</span></span>
+                            </div>
+                            <p class="menu-item-desc">Minced pork or chicken, classic stir fry with chilli, garlic, basil and vegetables</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">15</span>
+                                <span class="menu-item-name">Prew Wan <span class="menu-item-thai">เปรี้ยวหวาน</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry with vegetables in sweet & sour sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">16</span>
+                                <span class="menu-item-name">Nam Man Hoy <span class="menu-item-thai">น้ำมันหอย</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry with vegetables in oyster sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">17</span>
+                                <span class="menu-item-name">Poh Tek <span class="menu-item-thai">โป๊ะแตก</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry with vegetables in hot & sour sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">18</span>
+                                <span class="menu-item-name">Gra Tiem <span class="menu-item-thai">กระเทียม</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry in garlic & pepper sauce</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">19</span>
+                                <span class="menu-item-name">Pad Nor-mai <span class="menu-item-thai">ผัดหน่อไม้</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry garlic, chilli with bamboo shoots</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">20</span>
+                                <span class="menu-item-name">Pad Prik Pow <span class="menu-item-thai">ผัดพริกเผา</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry with vegetables in Thai chilli oil paste</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">20A</span>
+                                <span class="menu-item-name">Pad Pak <span class="menu-item-thai">ผัดผัก</span></span>
+                            </div>
+                            <p class="menu-item-desc">Stir fry vegetables with soya sauce</p>
+                        </div>
+                        <div class="menu-item-price">£8.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Starters -->
+            <div class="menu-section" id="tab-starters">
+                <div class="menu-category-title"><i class="fas fa-utensils"></i> Khong Wang ของว่าง (Starters)</div>
+                <p class="menu-category-desc">From the heart of Bangkok, our capital city.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">23</span>
+                                <span class="menu-item-name">Satay Gai <span class="menu-item-thai">สะเต๊ะไก่</span></span>
+                            </div>
+                            <p class="menu-item-desc">Marinated chicken skewered, with peanut sauce (x4)</p>
+                        </div>
+                        <div class="menu-item-price">£5.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">24</span>
+                                <span class="menu-item-name">Poh Piah Tod <span class="menu-item-thai">ปอเปี๊ยะทอด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Deep fried vegetable spring rolls, with sweet chilli sauce (x3)</p>
+                        </div>
+                        <div class="menu-item-price">£4.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">24A</span>
+                                <span class="menu-item-name">Gong Hom Pa <span class="menu-item-thai">กุ้งห่อผัก</span></span>
+                            </div>
+                            <p class="menu-item-desc">Deep fried king prawns spring rolls, with sweet chilli sauce (x4)</p>
+                        </div>
+                        <div class="menu-item-price">£5.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">25</span>
+                                <span class="menu-item-name">Tod Mun Pla <span class="menu-item-thai">ทอดมันปลา</span></span>
+                            </div>
+                            <p class="menu-item-desc">Thai spicy fish cake, with sweet chilli & peanut sauce (x4)</p>
+                        </div>
+                        <div class="menu-item-price">£5.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">26</span>
+                                <span class="menu-item-name">Kanom Jeeb <span class="menu-item-thai">ขนมจีบ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Pork dumplings, with crispy garlic & soy vinaigrette (x4)</p>
+                        </div>
+                        <div class="menu-item-price">£4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">27</span>
+                                <span class="menu-item-name">Tofu Tod <span class="menu-item-thai">เต้าหู้ทอด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Deep fried tofu, with sweet chilli sauce (x6)</p>
+                        </div>
+                        <div class="menu-item-price">£4.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">28</span>
+                                <span class="menu-item-name">Crispy Wonton <span class="menu-item-thai">เกี๊ยวทอด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Crispy chicken wonton, with sweet chilli sauce (x6)</p>
+                        </div>
+                        <div class="menu-item-price">£4.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">29</span>
+                                <span class="menu-item-name">Flaming Chicken <span class="menu-item-thai">ไก่ทอด</span></span>
+                            </div>
+                            <p class="menu-item-desc">Flaming chicken served with sriracha sauce (x6)</p>
+                        </div>
+                        <div class="menu-item-price">£5.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">30</span>
+                                <span class="menu-item-name">Moo Ping <span class="menu-item-thai">หมูปิ้ง</span></span>
+                            </div>
+                            <p class="menu-item-desc">Classic marinated pork skewered (x4)</p>
+                        </div>
+                        <div class="menu-item-price">£5.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yum Yum Box -->
+            <div class="menu-section" id="tab-yum">
+                <div class="menu-category-title"><i class="fas fa-leaf"></i> Yum Yum Box ยำยำ</div>
+                <p class="menu-category-desc">Thai salad box — freshly prepared from the streets of Bangkok.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">21</span>
+                                <span class="menu-item-name">Som Tam <span class="menu-item-thai">ส้มตำ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Delicious fresh papaya salads, peanuts, garlic & chilli</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">22</span>
+                                <span class="menu-item-name">Laab <span class="menu-item-thai">ลาบ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Minced pork or chicken, with chilli, onion, lime leaves, Thai herbs & fresh salad</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">22A</span>
+                                <span class="menu-item-name">Pla Gong <span class="menu-item-thai">ปลากรอบ</span></span>
+                            </div>
+                            <p class="menu-item-desc">King prawns salad with chilli, onion, lime leaves & fresh Thai herbs</p>
+                        </div>
+                        <div class="menu-item-price">£9.95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sides & Soup -->
+            <div class="menu-section" id="tab-sides">
+                <div class="menu-category-title"><i class="fas fa-bowl-rice"></i> Thai Soup & Sides</div>
+                <p class="menu-category-desc">Complete your meal with our traditional soups and sides.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">31</span>
+                                <span class="menu-item-name">Tom Yum <span class="menu-item-thai">ต้มยำ</span></span>
+                            </div>
+                            <p class="menu-item-desc">Spicy & sour lemongrass soup with mushroom. Choice of Chicken, Pork or Tofu.</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£6.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">32</span>
+                                <span class="menu-item-name">Tom Kha <span class="menu-item-thai">ต้มข่า</span></span>
+                            </div>
+                            <p class="menu-item-desc">Milky soup with coconut milk, mushroom & galangal. Choice of Chicken, Pork or Tofu.</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£6.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-number">33</span>
+                                <span class="menu-item-name">Tom Zapp <span class="menu-item-thai">ต้มแซ่บ</span></span>
+                            </div>
+                            <p class="menu-item-desc">A comfort spicy and sour soup, packed with tamarind and herbs. Choice of Chicken, Pork or Tofu.</p>
+                            <p class="menu-item-extras"><i class="fas fa-plus-circle"></i> Make dish with Prawn for an Extra £1.00</p>
+                        </div>
+                        <div class="menu-item-price">£6.50</div>
+                    </div>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="menu-category-title"><i class="fas fa-bowl-rice"></i> Sides</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Jasmine Rice</span>
+                            </div>
+                        </div>
+                        <div class="menu-item-price">£3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Sticky Rice</span>
+                            </div>
+                        </div>
+                        <div class="menu-item-price">£3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Egg Rice</span>
+                            </div>
+                        </div>
+                        <div class="menu-item-price">£3.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Spicy Prawn Cracker</span>
+                            </div>
+                        </div>
+                        <div class="menu-item-price">£3.50</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-section" id="tab-drinks">
+                <div class="menu-category-title"><i class="fas fa-glass-water"></i> Cha Thai Drinks</div>
+                <p class="menu-category-desc">Refreshing Thai beverages to complement your meal.</p>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">O-Liang</span>
+                            </div>
+                            <p class="menu-item-desc">Classic Thai black iced coffee</p>
+                        </div>
+                        <div class="menu-item-price">£2.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Cha Dam Yen</span>
+                            </div>
+                            <p class="menu-item-desc">Classic Thai black iced tea</p>
+                        </div>
+                        <div class="menu-item-price">£2.50</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Keg Huay</span>
+                            </div>
+                            <p class="menu-item-desc">Chrysanthemum iced tea</p>
+                        </div>
+                        <div class="menu-item-price">£2.50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="about-inner">
+        <div class="about-img animate-on-scroll">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Khao Gaeng Thai Restaurant">
+        </div>
+        <div class="about-content animate-on-scroll">
+            <div class="section-label">
+                <i class="fas fa-heart"></i>
+                Our Story
+            </div>
+            <h2 class="section-title">A Slice of Bangkok<br>in the Heart of Leeds</h2>
+            <p class="section-subtitle">Bringing authentic Thai street food culture to Yorkshire since 2019.</p>
+            <p class="about-text">
+                The best way to dine in our capital city "Bangkok" is to go to the local Khao Gaeng stall, 
+                where an abundance of healthy and delicious street food is served quickly with fresh ingredients. 
+                This Bangkok lifestyle has become one of the most attractive things that visitors and tourists 
+                love about Thailand, and here it is — a local Khao Gaeng Thai Stall in the heart of 
+                Leeds Kirkgate Market!
+            </p>
+            <p class="about-text">
+                Every dish is prepared with love using traditional recipes passed down through generations. 
+                We source the freshest ingredients daily from the market vendors around us, ensuring every 
+                bite transports you straight to the bustling streets of Bangkok.
+            </p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <div class="about-stat-number">5+</div>
+                    <div class="about-stat-label">Years of Service</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-number">30+</div>
+                    <div class="about-stat-label">Authentic Dishes</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-number">4.8</div>
+                    <div class="about-stat-label">Google Rating</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section class="reviews-section" id="reviews">
+    <div class="section-header animate-on-scroll">
+        <div class="section-label">
+            <i class="fas fa-star"></i>
+            Testimonials
+        </div>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Don't just take our word for it — hear from the people who keep coming back for more.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card animate-on-scroll">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"After visiting Thailand, I have been searching for food that tasted as good as what I tried there. The pad Thai took me straight back to Bangkok! Tasted exactly like a restaurant I had eaten at there! And the mango sticky rice is the best I have had in the UK so far."</p>
+            <div class="review-author">
+                <div class="review-avatar">S</div>
+                <div>
+                    <div class="review-name">Sanjeet</div>
+                    <div class="review-meta">Local Guide - 77 reviews</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card animate-on-scroll">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"Best Thai flavours we have had outside of Thailand. Authentic and delicious — great price and decent portion sizes. Would come back again, I highly recommend. Great for lunch outing."</p>
+            <div class="review-author">
+                <div class="review-avatar">K</div>
+                <div>
+                    <div class="review-name">Katie Vial</div>
+                    <div class="review-meta">13 reviews - 2 photos</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card animate-on-scroll">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"We came here for lunch and had the chicken fried rice and satay chicken skewers. The portions were huge — an impressive amount of food per plate. Both the skewers and the fried rice were really good, and considering the quality, the prices are very reasonable."</p>
+            <div class="review-author">
+                <div class="review-avatar">F</div>
+                <div>
+                    <div class="review-name">Franklin Ng</div>
+                    <div class="review-meta">Local Guide - 72 reviews</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card animate-on-scroll">
+            <div class="review-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"If you are craving flavorful Thai dishes, Khao Gaeng Thai is worth checking out. We tried the Pad Thai with chicken and prawns — while the dish had a good mix of flavours, the portion was generous and the quality was excellent."</p>
+            <div class="review-author">
+                <div class="review-avatar">F</div>
+                <div>
+                    <div class="review-name">Fish Lam</div>
+                    <div class="review-meta">Local Guide - 108 reviews</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Drinks Section -->
+<section class="drinks-section" id="drinks">
+    <div class="drinks-inner">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">
+                <i class="fas fa-mug-hot"></i>
+                Refreshments
+            </div>
+            <h2 class="section-title">Cha Thai Beverages</h2>
+            <p class="section-subtitle">Authentic Thai drinks to pair perfectly with your meal. Made with premium ingredients.</p>
+        </div>
+        <div class="drinks-grid">
+            <div class="drink-card animate-on-scroll">
+                <div class="drink-category">Brown Sugar Series</div>
+                <div class="drink-item">
+                    <span class="drink-name">Fresh Milk Brown Sugar Pearl</span>
+                    <span class="drink-price">£4.80 / £5.80</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Milk Tea Brown Sugar Pearl</span>
+                    <span class="drink-price">£4.80 / £5.80</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Green Milk Tea Brown Sugar Pearl</span>
+                    <span class="drink-price">£4.80 / £5.80</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Taro Milk Brown Sugar Pearl</span>
+                    <span class="drink-price">£4.80 / £5.80</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Assam Milk Tea Brown Sugar Pearl</span>
+                    <span class="drink-price">£4.80 / £5.80</span>
+                </div>
+                <div class="drink-sizes">Regular £4.80 | Large £5.80</div>
+            </div>
+            <div class="drink-card animate-on-scroll">
+                <div class="drink-category">Thai Tea & Coffee</div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Milk Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Green Milk Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Iced Coffee</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Pink Milk</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Taro Milk</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Chocolate Milk</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Assam Milk Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-sizes">Regular £4.00 | Large £5.00</div>
+            </div>
+            <div class="drink-card animate-on-scroll">
+                <div class="drink-category">Fruit Tea</div>
+                <div class="drink-item">
+                    <span class="drink-name">Peach Green Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Passion Fruit Green Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Mango Green Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Strawberry Green Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Lemon Black Tea</span>
+                    <span class="drink-price">£4.00 / £5.00</span>
+                </div>
+                <div class="drink-sizes">Regular £4.00 | Large £5.00</div>
+            </div>
+            <div class="drink-card animate-on-scroll">
+                <div class="drink-category">Frappe</div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Milk Tea Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Green Milk Tea Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Coffee Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Thai Pink Milk Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Taro Milk Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Passion Fruit Green Tea Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Mango Green Tea Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Peach Green Tea Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-item">
+                    <span class="drink-name">Chocolate Milk Frappe</span>
+                    <span class="drink-price">£4.50 / £5.50</span>
+                </div>
+                <div class="drink-sizes">Regular £4.50 | Large £5.50</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location Section -->
+<section class="location-section" id="location">
+    <div class="section-header animate-on-scroll">
+        <div class="section-label">
+            <i class="fas fa-map-marker-alt"></i>
+            Find Us
+        </div>
+        <h2 class="section-title">Visit Us at Kirkgate Market</h2>
+        <p class="section-subtitle">Located in the heart of Leeds Kirkgate Market, we are easy to find and even harder to forget.</p>
+    </div>
+    <div class="location-grid">
+        <div class="location-info">
+            <div class="location-card animate-on-scroll">
+                <div class="location-card-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-card-title">Address</div>
+                <div class="location-card-text">
+                    Unit 1, 1904, Leeds Kirkgate Market<br>
+                    George Street, Leeds LS2 7HY<br>
+                    United Kingdom
+                </div>
+            </div>
+            <div class="location-card animate-on-scroll">
+                <div class="location-card-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="location-card-title">Opening Hours</div>
+                <div class="location-card-text">
+                    <div class="hours-grid">
+                        <div class="hours-row">
+                            <span class="hours-day">Monday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Tuesday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Wednesday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Thursday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Friday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Saturday</span>
+                            <span class="hours-time">10:00 - 17:15</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="hours-day">Sunday</span>
+                            <span class="hours-time" style="color: var(--text-light);">Closed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="location-card animate-on-scroll">
+                <div class="location-card-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="location-card-title">Contact</div>
+                <div class="location-card-text">
+                    Phone: <a href="tel:01133451750">0113 345 1750</a><br>
+                    Service: Dine-in, Takeaway & Delivery<br>
+                    Price Range: £1 - £10 per person
+                </div>
+            </div>
+        </div>
+        <div class="map-container animate-on-scroll">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2356.5!2d-1.541!3d53.797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795c1f6e8e8e8f%3A0x8e8e8e8e8e8e8e8e!2sLeeds%20Kirkgate%20Market!5e0!3m2!1sen!2suk!4v1699999999999!5m2!1sen!2suk" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-brand-name">Khao Gaeng <span>Thai</span></div>
+                <p class="footer-brand-desc">Authentic Thai street food in the heart of Leeds Kirkgate Market. Bringing the vibrant flavours of Bangkok to Yorkshire since 2019.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://maps.app.goo.gl/h7EbAB5hgk4Nhbfj7" target="_blank" aria-label="Google Maps"><i class="fas fa-map-marker-alt"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-title">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#signature">Signature Dishes</a></li>
+                    <li><a href="#menu" onclick="openMenuModal(); return false;">Full Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Services</div>
+                <ul class="footer-links">
+                    <li><a href="#">Dine-in</a></li>
+                    <li><a href="#">Takeaway</a></li>
+                    <li><a href="#">Delivery</a></li>
+                    <li><a href="#location">Find Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Contact</div>
+                <ul class="footer-links">
+                    <li><a href="tel:01133451750">0113 345 1750</a></li>
+                    <li><a href="https://maps.app.goo.gl/h7EbAB5hgk4Nhbfj7" target="_blank">Google Maps</a></li>
+                    <li>Unit 1, 1904, Kirkgate Market</li>
+                    <li>Leeds LS2 7HY, UK</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">&copy; 2026 Khao Gaeng Thai. All rights reserved.</div>
+            <div class="footer-credit">Authentic Thai Street Food | Leeds Kirkgate Market</div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Menu Modal
+    function openMenuModal() {
+        document.getElementById('menuModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuModal() {
+        document.getElementById('menuModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Tab Switching
+    function switchTab(tabName) {
+        // Remove active from all tabs
+        document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.menu-section').forEach(section => section.classList.remove('active'));
+
+        // Add active to clicked tab
+        event.target.classList.add('active');
+        document.getElementById('tab-' + tabName).classList.add('active');
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeMenuModal();
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        }
+    });
+
+    // Close modal on backdrop click
+    document.getElementById('menuModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeMenuModal();
+        }
+    });
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.classList.toggle('active');
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Scroll Animation
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href !== '#menu') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
